@@ -204,3 +204,12 @@ Dark theme with gradient backgrounds, modern typography, and smooth animations
     opacity: 0.7;
   }
 }
+
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Compass, Sparkles, Heart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const SomethingMoreSection = () => {
+  const navigate = useNavigate();
+
   const handleDiscoverJourney = () => {
-    // Navigate to journey page
-    window.location.href = "/journey";
+    navigate('/journey');
   };
 
   const personalHighlights = [

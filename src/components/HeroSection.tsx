@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Download, Eye, Mail } from "lucide-react";
 import heroBackground from "@/assets/hero-bg.jpg";
+import heroAnimation from "@/assets/hero-animation.jpg";
 
 const HeroSection = () => {
   const scrollToSection = (sectionId: string) => {
@@ -21,72 +22,90 @@ const HeroSection = () => {
         backgroundAttachment: "fixed"
       }}
     >
-      <div className="container mx-auto px-4 text-center z-10">
-        <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
-          {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight">
-            Goutham A S
-          </h1>
+      <div className="container mx-auto px-4 z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[70vh]">
+          {/* Left Content */}
+          <div className="space-y-8 animate-fade-in text-left">
+            {/* Main Heading */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+              Goutham A S
+            </h1>
 
-          {/* Subheading with Gradient */}
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-medium">
-            <span className="gradient-text">Electrical Engineering Student</span>{" "}
-            <span className="text-secondary-text">|</span>{" "}
-            <span className="text-white">Aspiring Software Developer & AI Enthusiast</span>
-          </h2>
+            {/* Subheading with Gradient */}
+            <h2 className="text-lg md:text-xl lg:text-2xl font-medium">
+              <span className="gradient-text">Electrical Engineering Student</span>{" "}
+              <span className="text-secondary-text">|</span>{" "}
+              <span className="text-white">AI Enthusiast</span>
+            </h2>
 
-          {/* Description */}
-          <p className="text-lg md:text-xl text-secondary-text max-w-3xl mx-auto leading-relaxed">
-            A passionate and results-driven Electrical Engineering student at IIT Jodhpur with a strong foundation in 
-            software development, machine learning, and robotics. Dedicated to creating innovative solutions that bridge 
-            the gap between technology and real-world applications.
-          </p>
+            {/* Concise Description */}
+            <p className="text-lg text-secondary-text leading-relaxed max-w-xl">
+              IIT Jodhpur student passionate about AI, robotics, and software development. 
+              Creating innovative solutions at the intersection of technology and real-world applications.
+            </p>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
-            <Button 
-              onClick={() => scrollToSection("portfolio")}
-              className="bg-accent-solid hover:bg-accent-purple text-white px-8 py-3 text-lg font-medium button-glow"
-            >
-              <Eye className="mr-2 h-5 w-5" />
-              View Projects
-            </Button>
-            <Button 
-              onClick={() => scrollToSection("contact")}
-              variant="outline" 
-              className="border-accent-blue text-accent-blue hover:bg-accent-blue hover:text-white px-8 py-3 text-lg font-medium"
-            >
-              <Mail className="mr-2 h-5 w-5" />
-              Contact Me
-            </Button>
-            <Button 
-              variant="outline" 
-              className="border-secondary-text text-secondary-text hover:bg-secondary hover:text-white px-8 py-3 text-lg font-medium"
-              onClick={() => window.open("/Goutham_Resumenew_1.pdf", "_blank")}
-            >
-              <Download className="mr-2 h-5 w-5" />
-              Download CV
-            </Button>
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+              <Button 
+                onClick={() => scrollToSection("portfolio")}
+                className="bg-accent-solid hover:bg-accent-purple text-white px-6 py-3 text-base font-medium button-glow"
+              >
+                <Eye className="mr-2 h-4 w-4" />
+                View Projects
+              </Button>
+              <Button 
+                onClick={() => scrollToSection("contact")}
+                variant="outline" 
+                className="border-accent-blue text-accent-blue hover:bg-accent-blue hover:text-white px-6 py-3 text-base font-medium"
+              >
+                <Mail className="mr-2 h-4 w-4" />
+                Contact Me
+              </Button>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex space-x-4 mt-6">
+              <a
+                href="https://linkedin.com/in/goutham-a-s"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-secondary-text hover:text-accent-blue transition-all duration-300 p-3 rounded-full hover:bg-accent-blue/10 hover:shadow-lg hover:shadow-accent-blue/25"
+              >
+                <Linkedin size={20} />
+              </a>
+              <a
+                href="https://github.com/goutham-a-s"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-secondary-text hover:text-accent-purple transition-all duration-300 p-3 rounded-full hover:bg-accent-purple/10 hover:shadow-lg hover:shadow-accent-purple/25"
+              >
+                <Github size={20} />
+              </a>
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="border-secondary-text text-secondary-text hover:bg-secondary hover:text-white"
+                onClick={() => window.open("/Goutham_Resumenew_1.pdf", "_blank")}
+              >
+                <Download className="mr-2 h-4 w-4" />
+                CV
+              </Button>
+            </div>
           </div>
 
-          {/* Social Links */}
-          <div className="flex justify-center space-x-6 mt-8">
-            <a
-              href="https://linkedin.com/in/goutham-a-s"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-secondary-text hover:text-accent-blue transition-colors p-3 rounded-full hover:bg-card/50"
-            >
-              <Linkedin size={24} />
-            </a>
-            <a
-              href="https://github.com/goutham-a-s"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-secondary-text hover:text-accent-purple transition-colors p-3 rounded-full hover:bg-card/50"
-            >
-              <Github size={24} />
-            </a>
+          {/* Right Animation */}
+          <div className="relative animate-scale-in lg:block hidden">
+            <div className="relative overflow-hidden rounded-2xl">
+              <img 
+                src={heroAnimation}
+                alt="AI and Technology Animation"
+                className="w-full h-[500px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-accent-purple/20 to-accent-blue/20" />
+            </div>
+            {/* Floating Elements */}
+            <div className="absolute top-4 right-4 w-3 h-3 bg-accent-purple rounded-full animate-pulse" />
+            <div className="absolute bottom-8 left-8 w-2 h-2 bg-accent-blue rounded-full animate-bounce" />
           </div>
         </div>
       </div>

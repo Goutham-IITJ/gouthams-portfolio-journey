@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { GraduationCap, Target, Lightbulb, Rocket } from "lucide-react";
-import projectWorkspace from "@/assets/project-workspace.jpg";
+import profilePic from "@/assets/profile-pic.png";
 
 const AboutSection = () => {
   const highlights = [
@@ -40,32 +40,32 @@ const AboutSection = () => {
           {/* Main Content Grid */}
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
-            <div className="space-y-8 animate-slide-up">
+            <div className="space-y-8 animate-fade-in">
               <div className="space-y-6">
+                <h3 className="text-2xl font-bold gradient-text mb-4">Hello, I'm Goutham A S</h3>
                 <p className="text-lg text-secondary-text leading-relaxed">
-                  I am a motivated and detail-oriented <span className="text-accent-purple font-medium">Electrical Engineering undergraduate</span> at 
-                  the prestigious Indian Institute of Technology, Jodhpur. My academic journey has been marked by a deep fascination 
-                  with the intersection of <span className="text-accent-blue font-medium">electrical systems, artificial intelligence, and software development</span>.
+                  I'm an <span className="text-accent-purple font-medium">Electrical Engineering student</span> at IIT Jodhpur 
+                  with a strong interest in <span className="text-accent-blue font-medium">AI, robotics, and software development</span>. 
+                  I'm passionate about creating intelligent solutions that bridge theoretical knowledge with practical applications.
                 </p>
                 
                 <p className="text-lg text-secondary-text leading-relaxed">
-                  With a <span className="gradient-text font-medium">CGPA of 7.36</span> and consistently strong academic performance, I have built a solid foundation 
-                  in core engineering principles while actively pursuing practical applications through various projects and research initiatives. 
-                  My experience spans from <span className="text-white font-medium">autonomous robotics and machine learning</span> to 
-                  <span className="text-white font-medium">full-stack web development and AI-driven applications</span>.
+                  With a <span className="gradient-text font-medium">CGPA of 7.36</span> and hands-on experience in 
+                  <span className="text-white font-medium"> machine learning, autonomous systems, and full-stack development</span>, 
+                  I'm dedicated to pushing the boundaries of technology and innovation.
                 </p>
-
-                <p className="text-lg text-secondary-text leading-relaxed">
-                  Beyond academics, I actively contribute to the IIT Jodhpur community as <span className="text-accent-purple font-medium">Joint Secretary</span> of 
-                  the Board of Art and Culture, where I balance my technical pursuits with creative leadership. My goal is to leverage 
-                  technology to create meaningful impact and drive innovation in the rapidly evolving landscape of AI and automation.
-                </p>
+                
+                <div className="text-sm text-secondary-text space-y-1">
+                  <p><span className="text-accent-purple font-medium">Joint Secretary</span> - Board of Art and Culture, IIT Jodhpur</p>
+                  <p><span className="text-accent-blue font-medium">Project Mentor</span> - Robotics Society, IIT Jodhpur</p>
+                </div>
               </div>
 
               {/* Key Highlights Grid */}
-              <div className="grid sm:grid-cols-2 gap-4 mt-12">
+              <div className="grid sm:grid-cols-2 gap-4 mt-8">
                 {highlights.map((highlight, index) => (
-                  <Card key={index} className="card-glow p-4 hover:scale-105 transition-all duration-300">
+                  <Card key={index} className="card-glow p-4 hover:scale-105 transition-all duration-300 animate-slide-up" 
+                        style={{ animationDelay: `${index * 0.1}s` }}>
                     <div className="flex items-start space-x-3">
                       <div className="flex-shrink-0 mt-1">
                         {highlight.icon}
@@ -82,38 +82,26 @@ const AboutSection = () => {
               </div>
             </div>
 
-            {/* Image Section */}
-            <div className="relative animate-scale-in">
-              <div className="relative overflow-hidden rounded-2xl hero-glow">
-                <img 
-                  src={projectWorkspace}
-                  alt="Project Workspace - AI and Robotics Development Environment"
-                  className="w-full h-96 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background-secondary/80 via-transparent to-transparent" />
-                
-                {/* Floating Stats */}
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <Card className="bg-card/90 backdrop-blur-md p-3 border-accent-purple/20">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold gradient-text">7.36</div>
-                        <div className="text-xs text-secondary-text">CGPA</div>
-                      </div>
-                    </Card>
-                    <Card className="bg-card/90 backdrop-blur-md p-3 border-accent-blue/20">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold gradient-text">IIT</div>
-                        <div className="text-xs text-secondary-text">Jodhpur</div>
-                      </div>
-                    </Card>
-                  </div>
+            {/* Profile Image Section */}
+            <div className="relative animate-scale-in flex justify-center">
+              <div className="relative">
+                <div className="w-80 h-80 rounded-full overflow-hidden border-4 border-gradient-accent shadow-2xl hover:scale-105 transition-all duration-500 hover:shadow-accent-purple/30">
+                  <img 
+                    src={profilePic}
+                    alt="Goutham A S - Profile Picture"
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                  />
                 </div>
+                
+                {/* Glowing ring effect */}
+                <div className="absolute inset-0 rounded-full bg-gradient-accent opacity-20 blur-xl scale-110 animate-pulse" />
+                <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-accent-purple/30 to-accent-blue/30 blur-2xl animate-pulse" />
+                
+                {/* Floating elements */}
+                <div className="absolute top-8 -right-4 w-6 h-6 bg-accent-purple rounded-full animate-bounce opacity-60" />
+                <div className="absolute bottom-12 -left-6 w-4 h-4 bg-accent-blue rounded-full animate-pulse opacity-40" />
+                <div className="absolute top-1/2 -right-8 w-3 h-3 bg-white rounded-full animate-pulse opacity-30" />
               </div>
-
-              {/* Decorative Elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-accent rounded-full opacity-20 blur-xl" />
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-accent-purple/20 rounded-full opacity-30 blur-2xl" />
             </div>
           </div>
         </div>

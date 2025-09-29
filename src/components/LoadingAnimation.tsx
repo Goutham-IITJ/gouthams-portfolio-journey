@@ -15,7 +15,7 @@ const LoadingAnimation = ({ onComplete }: LoadingAnimationProps) => {
       } else {
         onComplete();
       }
-    }, 1000);
+    }, 800);
 
     return () => clearTimeout(timer);
   }, [currentPhase, onComplete]);
@@ -30,14 +30,17 @@ const LoadingAnimation = ({ onComplete }: LoadingAnimationProps) => {
           {icons.map((Icon, index) => (
             <div
               key={index}
-              className={`loading-icon transition-all duration-500 ${
+              className={`loading-icon transition-all duration-700 ease-out transform ${
                 currentPhase >= index 
-                  ? "opacity-100 scale-100 text-accent-purple" 
+                  ? "opacity-100 scale-100 text-accent-purple animate-bounce" 
                   : "opacity-30 scale-75 text-secondary-text"
               }`}
-              style={{ animationDelay: `${index * 0.2}s` }}
+              style={{ 
+                animationDelay: `${index * 0.3}s`,
+                transform: currentPhase >= index ? 'translateY(0px)' : 'translateY(10px)'
+              }}
             >
-              <Icon size={48} className="drop-shadow-lg" />
+              <Icon size={48} className="drop-shadow-2xl" />
             </div>
           ))}
         </div>
