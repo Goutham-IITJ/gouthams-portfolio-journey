@@ -2,9 +2,6 @@ import React, { useEffect, useRef } from "react";
 // Button removed from this page header to keep header minimal
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, Calendar, MapPin } from "lucide-react";
-import teamWork from "@/assets/team-work.jpg";
-import rcPlane from "@/assets/rc-plane.jpg";
-// using public images for the art gallery (e.g. /art1.jpg .. /art9.jpg)
 
 const Journey = () => {
   const journeyEntries = [
@@ -14,7 +11,7 @@ const Journey = () => {
       date: 'Hails from Kerala',
       location: 'Kerala, India',
       description: 'I grew up in Kerala. I love building things — electronics, small robots, and creative projects. I enjoy art, poetry, and collaborating with people to learn and build together.',
-      image: teamWork,
+      image: '/js.jpg',
       highlights: ['From Kerala', 'Electronics & Robotics', 'Art & Poetry']
     },
     {
@@ -23,7 +20,7 @@ const Journey = () => {
       date: 'IIT Kharagpur',
       location: 'IIT Kharagpur',
       description: 'A memorable cultural exchange where I represented IIT Jodhpur. It sharpened my teamwork and creative event execution skills.',
-  image: teamWork,
+      image: '/cult.jpg',
       highlights: ['Cultural Representation', 'Teamwork', 'Event Execution']
     },
     {
@@ -32,7 +29,7 @@ const Journey = () => {
       date: 'Present',
       location: 'IIT Jodhpur',
       description: 'Leading creative teams, organizing exhibitions and cultural programs while balancing technical studies.',
-  image: teamWork,
+      image: '/atelier.jpg',
       highlights: ['Leadership', 'Creative Direction']
     },
     {
@@ -41,7 +38,7 @@ const Journey = () => {
       date: 'Present',
       location: 'IIT Jodhpur',
       description: 'Active in the Product Club and mentoring juniors in the Robotics Club—helping them design and build projects.',
-      image: teamWork,
+      image: '/mentor.jpg',
       highlights: ['Product Thinking', 'Mentorship', 'Robotics Projects']
     },
     {
@@ -50,7 +47,7 @@ const Journey = () => {
       date: 'IIT Bombay',
       location: 'IIT Bombay',
       description: 'Competed in technical challenges focused on autonomous systems and robotics. The experience pushed my skills in systems integration and real-time control.',
-      image: teamWork,
+      image: '/tech.jpg',
       highlights: ['Autonomous Systems', 'Systems Integration']
     },
     {
@@ -59,7 +56,7 @@ const Journey = () => {
       date: 'IIT Jodhpur',
       location: 'IIT Jodhpur',
       description: 'Coordinated electronics teams — responsible for design, procurement, and testing of subsystem components.',
-      image: rcPlane,
+      image: '/me.jpg',
       highlights: ['Coordination', 'Design & Testing']
     },
     {
@@ -68,13 +65,13 @@ const Journey = () => {
       date: 'Ongoing',
       location: 'Personal',
       description: 'I pursue visual art and poetry as creative outlets — a balance to my engineering work that nourishes fresh ideas.',
-  image: teamWork,
+      image: '/poem.jpg',
       highlights: ['Visual Art', 'Poetry']
     }
   ];
 
   // gallery images served from the public/ folder at root
-  const artGalleryImages = Array.from({ length: 9 }).map((_, i) => ({
+  const artGalleryImages = Array.from({ length: 10 }).map((_, i) => ({
     src: `/art${i + 1}.jpg`,
     title: `Artwork ${i + 1}`,
   }));
@@ -82,6 +79,7 @@ const Journey = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const container = containerRef.current;
     if (!container) return;
 
@@ -203,12 +201,12 @@ const Journey = () => {
               /* Bubble visual removed */
               /* background base: deep gradient tuned for the Journey page */
               .bg-journey-base { background: radial-gradient(1200px 600px at 10% 20%, rgba(79,70,229,0.12), transparent 18%),
-                                           radial-gradient(1000px 500px at 92% 80%, rgba(59,130,246,0.08), transparent 20%),
-                                           linear-gradient(180deg, #05060a 0%, #0b1220 40%, #07102a 100%); }
+                                  radial-gradient(1000px 500px at 92% 80%, rgba(59,130,246,0.08), transparent 20%),
+                                  linear-gradient(180deg, #05060a 0%, #0b1220 40%, #07102a 100%); }
 
               /* subtle animated overlay for gentle movement */
               .bg-journey-overlay { background: radial-gradient(circle at 20% 30%, rgba(124,58,237,0.06), transparent 18%),
-                                              radial-gradient(circle at 80% 70%, rgba(59,130,246,0.04), transparent 22%);
+                                      radial-gradient(circle at 80% 70%, rgba(59,130,246,0.04), transparent 22%);
                 animation: journey-overlay-move 18s ease-in-out infinite;
                 opacity: 0.95;
               }
@@ -301,3 +299,4 @@ const Journey = () => {
 };
 
 export default Journey;
+
