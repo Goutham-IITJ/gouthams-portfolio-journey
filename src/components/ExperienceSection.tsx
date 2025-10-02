@@ -1,3 +1,4 @@
+import React, { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Trophy, Users, Beaker, Target } from "lucide-react";
@@ -56,42 +57,52 @@ const ExperienceSection = () => {
 
   const positions = [
     {
-      title: "Joint Secretary",
-      organization: "Ateliers, Board of Art and Culture",
+      title: "Coordinator (Electronic Subsystem)",
+      organization: "Robotics Society",
       institution: "IIT Jodhpur",
-      duration: "Present",
+      duration: "Oct 2024 - Present",
       icon: <Users className="text-accent-purple" size={20} />,
       responsibilities: [
-        "Lead cultural event organization and management",
-        "Coordinate with artist communities and cultural societies",
-        "Manage budgets and resource allocation for events",
-        "Foster creative collaboration across campus"
+        "Lead electronic subsystem design and integration",
+        "Coordinate sensor and actuator integration across teams",
+        "Design PCBs and debug embedded firmware",
+        "Ensure reliability in field tests and competitions"
+      ]
+    },
+    {
+      title: "Design Coordinator",
+      organization: "Office of Placement and Training",
+      institution: "IIT Jodhpur",
+      duration: "2024",
+      icon: <Target className="text-accent-blue" size={20} />,
+      responsibilities: [
+        "Lead design workshops and interview prep sessions",
+        "Coordinate with placement teams for presentation assets",
+        "Mentor students on portfolio and resume design"
       ]
     },
     {
       title: "Associate",
       organization: "Product Club",
-      institution: "IIT Jodhpur", 
-      duration: "Present",
+      institution: "IIT Jodhpur",
+      duration: "2023 - 2024",
       icon: <Target className="text-accent-blue" size={20} />,
       responsibilities: [
-        "Participate in product management workshops and case studies",
-        "Collaborate on innovative product development initiatives",
-        "Won 1st Place in Pitch Rush Hackathon",
-        "Develop entrepreneurial and product strategy skills"
+        "Participated in product management workshops",
+        "Collaborated on product development initiatives",
+        "Contributed to winning Pitch Rush Hackathon project"
       ]
     },
     {
-      title: "Project Mentor",
-      organization: "Robotics Society",
+      title: "Joint Secretary",
+      organization: "Fine Arts Society",
       institution: "IIT Jodhpur",
-      duration: "Oct 2024 - Nov 2024",
+      duration: "2022 - 2023",
       icon: <Users className="text-accent-purple" size={20} />,
       responsibilities: [
-        "Guide junior students in robotics project development",
-        "Provide technical mentorship in autonomous systems",
-        "Conduct workshops on robot programming and design",
-        "Foster innovation and hands-on learning experiences"
+        "Organized cultural events and exhibitions",
+        "Managed artist collaborations and budgets",
+        "Led outreach initiatives across campus"
       ]
     }
   ];
@@ -110,95 +121,93 @@ const ExperienceSection = () => {
           </p>
         </div>
 
-        {/* Experience Timeline */}
-        <div className="max-w-4xl mx-auto space-y-12 mb-16">
+        {/* Experience cards displayed side-by-side on wider screens */}
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {experiences.map((exp, index) => (
-            <div key={index} className="relative animate-slide-up" style={{ animationDelay: `${index * 0.2}s` }}>
-              {/* Timeline Line */}
-              {index !== experiences.length - 1 && (
-                <div className="absolute left-6 top-20 w-0.5 h-24 bg-gradient-accent opacity-30" />
-              )}
-              
-              <Card className="card-glow p-8 hover:scale-105 transition-all duration-300 ml-16">
-                <div className="space-y-6">
-                  {/* Header */}
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 p-3 bg-card rounded-full border border-accent-purple/20">
-                      {exp.icon}
-                    </div>
-                    <div className="flex-grow">
-                      <div className="flex flex-wrap items-start justify-between mb-2">
-                        <div>
-                          <h3 className="text-2xl font-bold gradient-text">{exp.title}</h3>
-                          <p className="text-lg text-white font-medium">{exp.role}</p>
-                          <p className="text-accent-blue font-medium">{exp.organization}</p>
-                        </div>
-                        <Badge className={`${exp.type === 'Competition' ? 'bg-accent-solid' : 'bg-accent-blue/20 text-accent-blue'} text-white`}>
-                          {exp.type}
-                        </Badge>
+            <Card
+              key={index}
+              tabIndex={0}
+              className="group relative overflow-hidden card-glow p-6 transition-transform duration-300 transform focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/40 hover:scale-105 animate-slide-up"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              {/* hover/focus glow behind content */}
+              <span className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-tr from-accent-purple/20 via-transparent to-accent-blue/20 blur-2xl opacity-0 transform scale-95 transition-all duration-300 group-hover:opacity-100 group-focus:opacity-100" aria-hidden />
+
+              <div className="relative z-10 space-y-4">
+                {/* Header */}
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 p-3 bg-card rounded-full border border-accent-purple/20">
+                    {exp.icon}
+                  </div>
+                  <div className="flex-grow">
+                    <div className="flex flex-wrap items-start justify-between mb-2">
+                      <div>
+                        <h3 className="text-2xl font-bold gradient-text">{exp.title}</h3>
+                        <p className="text-lg text-white font-medium">{exp.role}</p>
+                        <p className="text-accent-blue font-medium">{exp.organization}</p>
                       </div>
-                      
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-secondary-text mb-4">
-                        <div className="flex items-center space-x-1">
-                          <Calendar size={16} />
-                          <span>{exp.duration}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <MapPin size={16} />
-                          <span>{exp.location}</span>
-                        </div>
+                      <Badge className={`${exp.type === 'Competition' ? 'bg-accent-solid' : 'bg-accent-blue/20 text-accent-blue'} text-white`}>
+                        {exp.type}
+                      </Badge>
+                    </div>
+                    
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-secondary-text mb-4">
+                      <div className="flex items-center space-x-1">
+                        <Calendar size={16} />
+                        <span>{exp.duration}</span>
                       </div>
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-secondary-text leading-relaxed">
-                    {exp.description}
-                  </p>
-
-                  {/* Achievements */}
-                  <div className="space-y-4">
-                    <h4 className="font-semibold text-white">Key Achievements:</h4>
-                    <ul className="grid md:grid-cols-2 gap-2">
-                      {exp.achievements.map((achievement, idx) => (
-                        <li key={idx} className="flex items-start space-x-2 text-sm text-secondary-text">
-                          <div className="w-2 h-2 bg-accent-purple rounded-full mt-2 flex-shrink-0" />
-                          <span>{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Technologies */}
-                  <div className="space-y-3">
-                    <h4 className="font-semibold text-white">Technologies Used:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {exp.technologies.map((tech, idx) => (
-                        <Badge key={idx} className="bg-accent-solid/20 text-accent-purple border-accent-purple/30">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Highlights */}
-                  <div className="space-y-3">
-                    <h4 className="font-semibold text-white">Technical Highlights:</h4>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      {exp.highlights.map((highlight, idx) => (
-                        <div key={idx} className="flex items-center space-x-2 text-sm">
-                          <div className="w-1.5 h-1.5 bg-accent-blue rounded-full" />
-                          <span className="text-accent-blue">{highlight}</span>
-                        </div>
-                      ))}
+                      <div className="flex items-center space-x-1">
+                        <MapPin size={16} />
+                        <span>{exp.location}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </Card>
-              
-              {/* Timeline Dot */}
-              <div className="absolute left-5 top-8 w-3 h-3 bg-accent-purple rounded-full border-4 border-background" />
-            </div>
+
+                {/* Description */}
+                <p className="text-secondary-text leading-relaxed">
+                  {exp.description}
+                </p>
+
+                {/* Achievements */}
+                <div className="space-y-4">
+                  <h4 className="font-semibold text-white">Key Achievements:</h4>
+                  <ul className="grid md:grid-cols-2 gap-2">
+                    {exp.achievements.map((achievement, idx) => (
+                      <li key={idx} className="flex items-start space-x-2 text-sm text-secondary-text">
+                        <div className="w-2 h-2 bg-accent-purple rounded-full mt-2 flex-shrink-0" />
+                        <span>{achievement}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Technologies */}
+                <div className="space-y-3">
+                  <h4 className="font-semibold text-white">Technologies Used:</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {exp.technologies.map((tech, idx) => (
+                      <Badge key={idx} className="bg-accent-solid/20 text-accent-purple border-accent-purple/30">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Highlights */}
+                <div className="space-y-3">
+                  <h4 className="font-semibold text-white">Technical Highlights:</h4>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {exp.highlights.map((highlight, idx) => (
+                      <div key={idx} className="flex items-center space-x-2 text-sm">
+                        <div className="w-1.5 h-1.5 bg-accent-blue rounded-full" />
+                        <span className="text-accent-blue">{highlight}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Card>
           ))}
         </div>
 
@@ -213,10 +222,91 @@ const ExperienceSection = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {positions.map((position, index) => (
-              <Card key={index} className="card-glow p-6 hover:scale-105 transition-all duration-300">
-                <div className="space-y-4">
+          {/* Leadership marquee of cards with center scaling */}
+          <MarqueePositions positions={positions} />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ExperienceSection;
+
+// Helper marquee component placed at the bottom to keep top-level component tidy
+function MarqueePositions({ positions }: { positions: any[] }) {
+  const marqueeRef = useRef<HTMLDivElement | null>(null);
+  const itemsRef = useRef<Array<HTMLDivElement | null>>([]);
+  const [centerIdx, setCenterIdx] = useState<number | null>(null);
+
+  // Duplicate positions for seamless loop
+  const loop = positions.concat(positions);
+
+  useEffect(() => {
+    let raf = 0;
+    const track = marqueeRef.current;
+    if (!track) return;
+
+    const update = () => {
+      const container = track.parentElement as HTMLElement | null;
+      if (container) {
+        const crect = container.getBoundingClientRect();
+        const centerX = crect.left + crect.width / 2;
+        let best = -1;
+        let bestDist = Infinity;
+        itemsRef.current.forEach((el, i) => {
+          if (!el) return;
+          const r = el.getBoundingClientRect();
+          const itemCenter = r.left + r.width / 2;
+          const dist = Math.abs(itemCenter - centerX);
+          if (dist < bestDist) {
+            bestDist = dist;
+            best = i;
+          }
+        });
+        if (best >= 0) setCenterIdx(best);
+      }
+      raf = requestAnimationFrame(update);
+    };
+
+    raf = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(raf);
+  }, [positions.length]);
+
+  // Pause animation on focus within (accessibility)
+  useEffect(() => {
+    const container = marqueeRef.current?.parentElement;
+    if (!container) return;
+    const track = marqueeRef.current as HTMLElement;
+    function handleFocus() {
+      track.style.animationPlayState = 'paused';
+    }
+    function handleBlur() {
+      track.style.animationPlayState = 'running';
+    }
+    container.addEventListener('focusin', handleFocus);
+    container.addEventListener('focusout', handleBlur);
+    return () => {
+      container.removeEventListener('focusin', handleFocus);
+      container.removeEventListener('focusout', handleBlur);
+    };
+  }, []);
+
+  return (
+    <div className="marquee-container mt-6" aria-label="Leadership positions marquee">
+      <div className="marquee-track" ref={marqueeRef}>
+        {loop.map((position, i) => {
+          const isCenter = centerIdx === i;
+          return (
+            <div
+              key={i}
+              ref={(el) => (itemsRef.current[i] = el)}
+              className="marquee-item px-2"
+            >
+              <Card
+                tabIndex={0}
+                className={`card-glow p-4 w-72 transition-transform duration-500 ${isCenter ? 'scale-110 z-20' : 'scale-100'}`}
+              >
+                <div className="space-y-3">
                   <div className="flex items-start space-x-3">
                     <div className="flex-shrink-0 p-2 bg-card rounded-full border border-accent-purple/20">
                       {position.icon}
@@ -230,9 +320,9 @@ const ExperienceSection = () => {
                       </Badge>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
-                    {position.responsibilities.map((resp, idx) => (
+                    {position.responsibilities.map((resp: string, idx: number) => (
                       <div key={idx} className="flex items-start space-x-2 text-sm text-secondary-text">
                         <div className="w-1 h-1 bg-accent-purple rounded-full mt-2 flex-shrink-0" />
                         <span>{resp}</span>
@@ -241,12 +331,10 @@ const ExperienceSection = () => {
                   </div>
                 </div>
               </Card>
-            ))}
-          </div>
-        </div>
+            </div>
+          );
+        })}
       </div>
-    </section>
+    </div>
   );
-};
-
-export default ExperienceSection;
+}

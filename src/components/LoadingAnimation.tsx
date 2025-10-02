@@ -6,65 +6,63 @@ interface LoadingAnimationProps {
 }
 
 const LoadingAnimation = ({ onComplete }: LoadingAnimationProps) => {
-  const [currentPhase, setCurrentPhase] = useState(0);
+  const [phase, setPhase] = useState("start");
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (currentPhase < 3) {
-        setCurrentPhase(currentPhase + 1);
-      } else {
-        onComplete();
-      }
-    }, 800);
+    const sequence = [
+      setTimeout(() => setPhase("icons"), 100),
+      setTimeout(() => setPhase("title"), 600),
+      setTimeout(() => setPhase("subtitle"), 1200),
+      setTimeout(() => setPhase("end"), 2500),
+      setTimeout(onComplete, 3000),
+    ];
 
-    return () => clearTimeout(timer);
-  }, [currentPhase, onComplete]);
+    return () => sequence.forEach(clearTimeout);
+  }, [onComplete]);
 
   const icons = [Code2, User, Zap];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-bg">
-      <div className="text-center space-y-8 animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-bg transition-opacity duration-500"
+         style={{ opacity: phase === 'end' ? 0 : 1 }}>
+      <div className="text-center space-y-8">
         {/* Loading Icons */}
         <div className="flex justify-center space-x-8 mb-12">
           {icons.map((Icon, index) => (
             <div
               key={index}
-              className={`loading-icon transition-all duration-700 ease-out transform ${
-                currentPhase >= index 
-                  ? "opacity-100 scale-100 text-accent-purple animate-bounce" 
-                  : "opacity-30 scale-75 text-secondary-text"
-              }`}
+              className="transition-all duration-700 ease-out"
               style={{ 
-                animationDelay: `${index * 0.3}s`,
-                transform: currentPhase >= index ? 'translateY(0px)' : 'translateY(10px)'
+                opacity: phase === 'start' ? 0 : 1,
+                transform: phase === 'start' ? 'translateY(20px)' : 'translateY(0px)',
+                transitionDelay: `${index * 150}ms`,
               }}
             >
-              <Icon size={48} className="drop-shadow-2xl" />
+              <Icon size={48} className="drop-shadow-2xl text-accent-purple animate-icon-float" style={{ animationDelay: `${index * 0.3}s` }}/>
             </div>
           ))}
         </div>
 
         {/* Main Heading */}
-        <div className="space-y-4">
-          <h1 className="text-5xl md:text-7xl font-bold text-white">
+        <div className="space-y-4 transition-all duration-700 ease-out"
+             style={{
+                opacity: phase === 'title' || phase === 'subtitle' || phase === 'end' ? 1 : 0,
+                transform: phase === 'title' || phase === 'subtitle' || phase === 'end' ? 'translateY(0)' : 'translateY(20px)',
+             }}
+        >
+          <h1 className="text-5xl md:text-7xl font-bold text-white animate-text-glow">
             Welcome To My{" "}
             <span className="gradient-text">Portfolio</span>{" "}
             Website
           </h1>
-          <h2 className="text-2xl md:text-3xl font-light text-secondary-text">
+          <h2 className="text-2xl md:text-3xl font-light text-secondary-text transition-opacity duration-700"
+              style={{ 
+                opacity: phase === 'subtitle' || phase === 'end' ? 1 : 0,
+                transitionDelay: '200ms'
+             }}
+          >
             Goutham-A-S
           </h2>
-        </div>
-
-        {/* Progress Bar */}
-        <div className="w-64 mx-auto">
-          <div className="h-1 bg-card rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-gradient-accent transition-all duration-1000 ease-out rounded-full"
-              style={{ width: `${(currentPhase / 3) * 100}%` }}
-            />
-          </div>
         </div>
       </div>
     </div>

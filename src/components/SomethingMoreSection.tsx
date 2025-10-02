@@ -88,8 +88,8 @@ const SomethingMoreSection = () => {
                 </span>
               </Button>
               
-              {/* Glowing ring effect */}
-              <div className="absolute inset-0 rounded-full bg-gradient-accent opacity-20 blur-xl scale-150 animate-pulse" />
+              {/* Glowing ring effect (non-interactive) */}
+              <div className="absolute inset-0 rounded-full bg-gradient-accent opacity-20 blur-xl scale-150 animate-pulse pointer-events-none" />
             </div>
 
             <p className="text-secondary-text text-lg">

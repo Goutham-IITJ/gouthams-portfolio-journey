@@ -90,15 +90,30 @@ const ContactSection = () => {
       icon: <Linkedin className="text-accent-blue" size={24} />,
       label: "LinkedIn",
       username: "@goutham-a-s",
-      link: "https://linkedin.com/in/goutham-a-s",
+      link: "https://www.linkedin.com/in/goutham-a-s-93b30b312/",
       description: "Professional network"
     },
     {
       icon: <Github className="text-accent-purple" size={24} />,
       label: "GitHub", 
-      username: "@goutham-a-s",
-      link: "https://github.com/goutham-a-s",
+      username: "@Goutham-IITJ",
+      link: "https://github.com/Goutham-IITJ",
       description: "Code repositories"
+    }
+    ,
+    {
+      icon: (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden={true}>
+          <path d="M6.5 12C7.32843 12 8 11.3284 8 10.5C8 9.67157 7.32843 9 6.5 9C5.67157 9 5 9.67157 5 10.5C5 11.3284 5.67157 12 6.5 12Z" fill="#FFA116"/>
+          <path d="M18 7L13 12" stroke="#FFA116" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M9 15L11.5 12.5" stroke="#FFA116" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M14.5 16.5L18 13" stroke="#FFA116" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      ),
+      label: "LeetCode",
+      username: "@goutham99",
+      link: "https://leetcode.com/u/goutham99/",
+      description: "Algorithm practice & problem solving"
     }
   ];
 

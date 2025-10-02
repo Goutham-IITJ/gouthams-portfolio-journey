@@ -20,7 +20,7 @@ const PortfolioShowcase = () => {
       tech: ["Python", "TensorFlow", "OpenCV", "Flask", "React"],
       category: "AI/ML",
       icon: <Brain className="text-accent-purple" size={24} />,
-      githubUrl: "#",
+      githubUrl: "https://github.com/Goutham-IITJ/Raseed",
       liveUrl: "#",
       imageUrl: null // User can upload image later
     },
@@ -30,7 +30,7 @@ const PortfolioShowcase = () => {
       tech: ["React", "Node.js", "MongoDB", "Stripe", "JWT"],
       category: "Web Development",
       icon: <ShoppingCart className="text-accent-blue" size={24} />,
-      githubUrl: "#",
+      githubUrl: "https://github.com/Goutham-IITJ/E-commerce-platform",
       liveUrl: "#",
       imageUrl: null
     },
@@ -40,7 +40,7 @@ const PortfolioShowcase = () => {
       tech: ["Python", "NLTK", "Django", "D3.js", "PostgreSQL"],
       category: "Data Science",
       icon: <Brain className="text-accent-purple" size={24} />,
-      githubUrl: "#",
+      githubUrl: "https://github.com/Goutham-IITJ/SentimentSphere",
       liveUrl: "#",
       imageUrl: null
     },
@@ -50,7 +50,7 @@ const PortfolioShowcase = () => {
       tech: ["Python", "Scikit-learn", "Wireshark", "Flask", "MySQL"],
       category: "Cybersecurity",
       icon: <Shield className="text-accent-blue" size={24} />,
-      githubUrl: "#",
+      githubUrl: "https://github.com/Goutham-IITJ/Network-Intrusion-Detector",
       liveUrl: "#",
       imageUrl: null
     }
@@ -88,10 +88,14 @@ const PortfolioShowcase = () => {
 
   const ProjectCard = ({ project, index }: { project: any; index: number }) => (
     <Card 
-      className="card-glow p-6 hover:scale-105 transition-all duration-300 animate-fade-in group"
+      tabIndex={0}
+      className="relative overflow-hidden p-6 transition-transform duration-300 ease-in-out transform group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/40 hover:scale-105"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
-      <div className="space-y-4">
+      {/* Glow background */}
+      <span className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-tr from-accent-purple/30 via-transparent to-accent-blue/30 blur-2xl opacity-0 scale-95 transition-all duration-300 group-hover:opacity-100 group-focus:opacity-100" aria-hidden />
+
+      <div className="relative z-10 space-y-4">
         {/* Project Image or Icon */}
         <div className="relative h-48 bg-gradient-to-br from-accent-purple/10 to-accent-blue/10 rounded-lg overflow-hidden">
           {project.imageUrl ? (
@@ -138,11 +142,13 @@ const PortfolioShowcase = () => {
 
           {/* Action Buttons */}
           <div className="flex gap-3 pt-2">
-            <Button size="sm" variant="outline" className="border-accent-purple/50 text-accent-purple hover:bg-accent-purple/10">
+            <Button size="sm" variant="outline" className="border-accent-purple/50 text-accent-purple hover:bg-accent-purple/10" onClick={() => project.githubUrl && window.open(project.githubUrl, '_blank')}
+            >
               <Github className="mr-2 h-4 w-4" />
               Code
             </Button>
-            <Button size="sm" variant="outline" className="border-accent-blue/50 text-accent-blue hover:bg-accent-blue/10">
+            <Button size="sm" variant="outline" className="border-accent-blue/50 text-accent-blue hover:bg-accent-blue/10" onClick={() => project.liveUrl && window.open(project.liveUrl, '_blank')}
+            >
               <ExternalLink className="mr-2 h-4 w-4" />
               Demo
             </Button>
@@ -154,10 +160,14 @@ const PortfolioShowcase = () => {
 
   const CertificateCard = ({ certificate, index }: { certificate: any; index: number }) => (
     <Card 
-      className="card-glow p-6 hover:scale-105 transition-all duration-300 animate-fade-in"
+      tabIndex={0}
+      className="relative overflow-hidden p-6 transition-transform duration-300 ease-in-out transform group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/40 hover:scale-102"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
-      <div className="space-y-4">
+      {/* Glow background */}
+      <span className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-tr from-accent-blue/30 via-transparent to-accent-purple/30 blur-2xl opacity-0 scale-95 transition-all duration-300 group-hover:opacity-100 group-focus:opacity-100" aria-hidden />
+
+      <div className="relative z-10 space-y-4">
         {/* Certificate Image or Icon */}
         <div className="relative h-32 bg-gradient-to-br from-accent-blue/10 to-accent-purple/10 rounded-lg overflow-hidden">
           {certificate.imageUrl ? (
@@ -252,12 +262,52 @@ const PortfolioShowcase = () => {
                   <p className="text-secondary-text mb-6">
                     Explore my comprehensive technical skill set below.
                   </p>
-                  <Button 
-                    onClick={() => scrollToSection("skills")}
-                    className="bg-accent-solid hover:bg-accent-purple text-white"
-                  >
-                    View Skills Section
-                  </Button>
+
+                  {/* Marquee conveyor for tech logos */}
+                  <div className="mt-6 marquee-container rounded-md" aria-label="Technology logos marquee">
+                    <div className="marquee-track">
+                      {[
+                        { src: '/reactjs.svg', alt: 'React' },
+                        { src: '/javascript.svg', alt: 'JavaScript' },
+                        { src: '/nodejs.svg', alt: 'Node.js' },
+                        { src: '/tailwind.svg', alt: 'Tailwind CSS' },
+                        { src: '/vite.svg', alt: 'Vite' },
+                        { src: '/firebase.svg', alt: 'Firebase' },
+                        { src: '/MUI.svg', alt: 'MUI' },
+                        { src: '/bootstrap.svg', alt: 'Bootstrap' },
+                        { src: '/css.svg', alt: 'CSS3' },
+                        { src: '/html.svg', alt: 'HTML5' },
+                        { src: '/vercel.svg', alt: 'Vercel' }
+                      ].concat([
+                        { src: '/reactjs.svg', alt: 'React' },
+                        { src: '/javascript.svg', alt: 'JavaScript' },
+                        { src: '/nodejs.svg', alt: 'Node.js' },
+                        { src: '/tailwind.svg', alt: 'Tailwind CSS' },
+                        { src: '/vite.svg', alt: 'Vite' },
+                        { src: '/firebase.svg', alt: 'Firebase' },
+                        { src: '/MUI.svg', alt: 'MUI' },
+                        { src: '/bootstrap.svg', alt: 'Bootstrap' },
+                        { src: '/css.svg', alt: 'CSS3' },
+                        { src: '/html.svg', alt: 'HTML5' },
+                        { src: '/vercel.svg', alt: 'Vercel' }
+                      ]).map((logo, i) => (
+                        <div key={i} className="marquee-item w-24 h-14 flex items-center justify-center p-2">
+                          <div className="w-full h-full flex items-center justify-center bg-card/10 rounded-md p-2">
+                            <img src={logo.src} alt={logo.alt} loading="lazy" className="max-h-10 max-w-full object-contain" />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-6">
+                    <Button 
+                      onClick={() => scrollToSection("skills")}
+                      className="bg-accent-solid hover:bg-accent-purple text-white"
+                    >
+                      View Skills Section
+                    </Button>
+                  </div>
                 </div>
               </div>
             </TabsContent>
@@ -269,3 +319,4 @@ const PortfolioShowcase = () => {
 };
 
 export default PortfolioShowcase;
+

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { Card } from "@/components/ui/card";
-import { FolderOpen, Award, Calendar } from "lucide-react";
+import { FolderOpen, Award, Calendar, ArrowRight } from "lucide-react";
 
 interface StatCardProps {
   icon: React.ReactNode;
   number: number;
   label: string;
+  description: string;
   delay: number;
 }
 
-const StatCard = ({ icon, number, label, delay }: StatCardProps) => {
+const StatCard = ({ icon, number, label, description, delay }: StatCardProps) => {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -54,56 +54,70 @@ const StatCard = ({ icon, number, label, delay }: StatCardProps) => {
   }, [isVisible, number, delay]);
 
   return (
-    <Card 
+    <div 
       id={`stat-${label.replace(/\s+/g, '-').toLowerCase()}`}
-      className="card-glow p-6 text-center hover:scale-105 transition-all duration-300"
+      className="stat-card group"
     >
-      <div className="flex flex-col items-center space-y-4">
-        <div className="text-accent-purple">
-          {icon}
-        </div>
-        <div>
-          <div className="text-3xl md:text-4xl font-bold gradient-text">
-            {count}+
+      <div className="stat-card-content">
+        <div className="flex justify-between items-start">
+          <div className="p-3 bg-card rounded-full border border-accent-purple/20 text-accent-purple group-hover:border-accent-purple/50 group-hover:text-white transition-colors">
+            {icon}
           </div>
-          <div className="text-secondary-text font-medium mt-1">
+          <div className="text-5xl font-bold gradient-text">
+            {count}
+          </div>
+        </div>
+        <div className="text-left mt-4">
+          <div className="text-white font-semibold text-lg">
             {label}
           </div>
+          <p className="text-secondary-text text-sm mt-1">
+            {description}
+          </p>
+        </div>
+        <div className="mt-4 text-left">
+          <span className="text-accent-blue text-sm font-medium flex items-center opacity-0 group-hover:opacity-100 transition-opacity">
+            View More <ArrowRight className="ml-1 h-4 w-4" />
+          </span>
         </div>
       </div>
-    </Card>
+    </div>
   );
 };
 
 const StatsSection = () => {
   const stats = [
     {
-      icon: <FolderOpen size={48} />,
+      icon: <FolderOpen size={24} />,
       number: 8,
-      label: "TOTAL PROJECTS"
+      label: "TOTAL PROJECTS",
+      description: "Innovative web solutions crafted"
     },
     {
-      icon: <Award size={48} />,
+      icon: <Award size={24} />,
       number: 5,
-      label: "CERTIFICATES"
+      label: "CERTIFICATES",
+      description: "Professional skills validated"
     },
     {
-      icon: <Calendar size={48} />,
+      icon: <Calendar size={24} />,
       number: 2,
-      label: "YEARS OF EXPERIENCE"
+      label: "YEARS OF EXPERIENCE",
+      description: "Continuous learning journey"
     }
   ];
 
   return (
     <section className="py-20 bg-background/50">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {stats.map((stat, index) => (
             <StatCard
               key={stat.label}
               icon={stat.icon}
               number={stat.number}
               label={stat.label}
+              description={stat.description}
               delay={index * 200}
             />
           ))}
