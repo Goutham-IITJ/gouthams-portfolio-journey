@@ -142,6 +142,190 @@ Dark theme with gradient backgrounds, modern typography, and smooth animations
   .nav-link.active::after {
     width: 100%;
   }
+
+  .btn-glass {
+    @apply relative inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white rounded-lg overflow-hidden transition-all duration-300;
+    background: hsla(0, 0%, 100%, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid hsla(0, 0%, 100%, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-glass:hover {
+    background: hsla(0, 0%, 100%, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero-glass {
+    background: linear-gradient(
+      -45deg,
+      hsl(var(--background-secondary) / 0.6),
+      hsl(var(--accent-purple) / 0.1),
+      hsl(var(--accent-blue) / 0.2),
+      hsl(var(--background-secondary) / 0.6)
+    );
+    background-size: 400% 400%;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid hsl(var(--border) / 0.2);
+    animation: liquid-gradient 20s ease infinite;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glass::before,
+  .hero-glass::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.3;
+  }
+
+  .hero-glass::before {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, hsl(var(--accent-purple)) 0%, transparent 70%);
+    animation: bubble-move-1 25s ease-in-out infinite;
+  }
+
+  .hero-glass::after {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, hsl(var(--accent-blue)) 0%, transparent 70%);
+    animation: bubble-move-2 30s ease-in-out infinite;
+  }
+
+  .hero-card {
+    @apply p-8 md:p-12 rounded-2xl transition-all duration-300;
+    background: hsla(219, 45%, 5%, 0.2);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid hsla(215, 16%, 25%, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-card:hover {
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 75%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsla(0, 0%, 100%, 0.1), transparent);
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .hero-card:hover::before {
+    transform: translateX(250%);
+  }
+
+  .stat-card {
+    @apply relative p-1 rounded-2xl overflow-hidden transition-all duration-300;
+    background: transparent;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px; /* border width */
+    background: conic-gradient(from 180deg at 50% 50%, hsl(var(--accent-blue)) 0deg, hsl(var(--accent-purple)) 180deg, hsl(var(--accent-blue)) 360deg);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: spin 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  .stat-card:hover::before {
+    opacity: 1;
+  }
+
+  .stat-card-content {
+    @apply relative z-10 bg-card/80 backdrop-blur-sm rounded-xl p-6 h-full flex flex-col justify-between transition-all duration-300;
+  }
+
+  .stat-card:hover .stat-card-content {
+    transform: scale(0.98);
+    background: hsl(var(--card));
+  }
+
+  .highlight-card {
+    @apply p-4 rounded-lg transition-all duration-300 relative overflow-hidden;
+    background: hsla(215, 28%, 17%, 0.3);
+    border: 1px solid hsla(215, 16%, 25%, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+
+  .highlight-card:hover {
+    background: hsla(215, 28%, 17%, 0.6);
+    transform: translateY(-4px) scale(1.05);
+  }
+
+  .highlight-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px; /* border width */
+    background: conic-gradient(from 180deg at 50% 50%, hsl(var(--accent-blue)) 0deg, hsl(var(--accent-purple)) 180deg, hsl(var(--accent-blue)) 360deg);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: spin 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  .highlight-card:hover::before {
+    opacity: 1;
+  }
+
+  /* New Aurora Glow Effect */
+  .aurora-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .aurora-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, hsla(var(--accent-purple), 0.2) 0%, transparent 35%);
+    transform: translate(-50%, -50%);
+    animation: aurora-glow 8s linear infinite;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .aurora-card:hover::after {
+    opacity: 1;
+  }
 }
 
 /* Keyframe Animations */
@@ -178,6 +362,34 @@ Dark theme with gradient backgrounds, modern typography, and smooth animations
   }
 }
 
+@keyframes liquid-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes bubble-move-1 {
+  0% { transform: translate(10vw, 80vh) scale(1); }
+  25% { transform: translate(40vw, 20vh) scale(1.2); }
+  50% { transform: translate(80vw, 70vh) scale(0.9); }
+  75% { transform: translate(30vw, 60vh) scale(1.1); }
+  100% { transform: translate(10vw, 80vh) scale(1); }
+}
+
+@keyframes bubble-move-2 {
+  0% { transform: translate(80vw, 10vh) scale(1.1); }
+  25% { transform: translate(20vw, 70vh) scale(0.8); }
+  50% { transform: translate(60vw, 20vh) scale(1.2); }
+  75% { transform: translate(30vw, 50vh) scale(1); }
+  100% { transform: translate(80vw, 10vh) scale(1.1); }
+}
+
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -185,6 +397,35 @@ Dark theme with gradient backgrounds, modern typography, and smooth animations
   50% {
     transform: translateY(-20px);
   }
+}
+
+/* Marquee / conveyor belt */
+@keyframes marquee-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 18s linear infinite;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+}
+
+.marquee-container:hover .marquee-track,
+.marquee-container:focus-within .marquee-track {
+  animation-play-state: paused;
 }
 
 @keyframes spin {
@@ -213,3 +454,12 @@ Dark theme with gradient backgrounds, modern typography, and smooth animations
     transform: translateX(-50%);
   }
 }
+
+@keyframes aurora-glow {
+  0% { transform: translate(-25%, -75%); }
+  25% { transform: translate(-75%, -25%); }
+  50% { transform: translate(-25%, 25%); }
+  75% { transform: translate(25%, -25%); }
+  100% { transform: translate(-25%, -75%); }
+}
+
