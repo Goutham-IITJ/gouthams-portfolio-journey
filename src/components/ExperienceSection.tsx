@@ -57,15 +57,14 @@ const ExperienceSection = () => {
 
   const positions = [
     {
-      title: "Coordinator (Electronic Subsystem)",
+      title: "Electronic Subsystem Coordinator",
       organization: "Robotics Society",
       institution: "IIT Jodhpur",
-      duration: "Oct 2024 - Present",
+      duration: "Aug 2025 - Present",
       icon: <Users className="text-accent-purple" size={20} />,
       responsibilities: [
-        "Lead electronic subsystem design and integration",
+        "Leading electronic subsystem design and integration",
         "Coordinate sensor and actuator integration across teams",
-        "Design PCBs and debug embedded firmware",
         "Ensure reliability in field tests and competitions"
       ]
     },
@@ -73,19 +72,18 @@ const ExperienceSection = () => {
       title: "Design Coordinator",
       organization: "Office of Placement and Training",
       institution: "IIT Jodhpur",
-      duration: "2024",
+      duration: "Aug 2025 - Present",
       icon: <Target className="text-accent-blue" size={20} />,
       responsibilities: [
-        "Lead design workshops and interview prep sessions",
-        "Coordinate with placement teams for presentation assets",
-        "Mentor students on portfolio and resume design"
+        "Lead design workshops ",
+        "Coordinate with placement teams for presentation assets"
       ]
     },
     {
       title: "Associate",
       organization: "Product Club",
       institution: "IIT Jodhpur",
-      duration: "2023 - 2024",
+      duration: "2024",
       icon: <Target className="text-accent-blue" size={20} />,
       responsibilities: [
         "Participated in product management workshops",
@@ -97,7 +95,7 @@ const ExperienceSection = () => {
       title: "Joint Secretary",
       organization: "Fine Arts Society",
       institution: "IIT Jodhpur",
-      duration: "2022 - 2023",
+      duration: "2024",
       icon: <Users className="text-accent-purple" size={20} />,
       responsibilities: [
         "Organized cultural events and exhibitions",

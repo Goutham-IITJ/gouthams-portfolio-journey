@@ -75,14 +75,14 @@ const AboutSection = () => {
                 </p>
                 
                 <p className="text-lg text-secondary-text leading-relaxed">
-                  With a <span className="gradient-text font-medium">CGPA of 7.36</span> and hands-on experience in 
+                  With hands-on experience in 
                   <span className="text-white font-medium"> machine learning, autonomous systems, and full-stack development</span>, 
                   I am driven to build robust technologies that solve complex, real-world problems.
                 </p>
                 
                 <div className="text-sm text-secondary-text space-y-1">
-                  <p><span className="text-accent-purple font-medium">Joint Secretary</span> - Board of Art and Culture, IIT Jodhpur</p>
-                  <p><span className="text-accent-blue font-medium">Project Mentor</span> - Robotics Society, IIT Jodhpur</p>
+                  <p><span className="text-accent-purple font-medium">Coordinator</span> - Robotics Society, IIT Jodhpur</p>
+                  <p><span className="text-accent-blue font-medium">Ex Joint Secretary</span> - Fine Arts Society , IIT Jodhpur</p>
                 </div>
               </div>
             </div>

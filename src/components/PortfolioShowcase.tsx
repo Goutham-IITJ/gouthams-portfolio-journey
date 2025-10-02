@@ -3,9 +3,11 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ExternalLink, Github, Award, Code, Brain, Shield, ShoppingCart, Image } from "lucide-react";
+import { ExternalLink, Github, Award, Code, Brain, Shield, ShoppingCart, Image, ChevronDown, ChevronUp } from "lucide-react";
 
 const PortfolioShowcase = () => {
+  const [showAllProjects, setShowAllProjects] = useState(false);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -16,18 +18,28 @@ const PortfolioShowcase = () => {
   const projects = [
     {
       title: "Project Raseed",
-      description: "An AI-powered agricultural advisory system that provides farmers with real-time crop recommendations, disease detection, and market price predictions using machine learning algorithms.",
-      tech: ["Python", "TensorFlow", "OpenCV", "Flask", "React"],
+      description: "AI-First Receipt Intelligence Engine with Google Wallet Integration.A scalable Google Cloud Platform (GCP) serverless backend using Cloud Functions and Firebase, powered by Gemini AI, which achieved a 60% reduction in latency for multimodal receipt processing. The system enables queries in local languages through Vertex AI Agent, delivering real-time insights like spending trends and savings alerts as interactive Google Wallet passes. It also features a Gemini Vision ingestion pipeline with 98% OCR accuracy.",
+      tech: ["Gemini Pro Vision", "Vertex AI", "OpenCV", "Firebase", "Cloud Functions"],
       category: "AI/ML",
       icon: <Brain className="text-accent-purple" size={24} />,
       githubUrl: "https://github.com/Goutham-IITJ/Raseed",
       liveUrl: "#",
-      imageUrl: null // User can upload image later
+      imageUrl: '/project-raseed.png' // User can upload image later
+    },
+    {
+      title: " Autonomous Swarm Navigation",
+      description: "Built a centralized intelligence system for robot swarm navigation, achieving a 35% reduction in pathfinding latency in unpredictable environments through optimized path-planning algorithms.A dual-layered architecture integrating reinforcement learning for path planning and YOLOv8 Nano for real time object detection, improving obstacle avoidance accuracy by 22%",
+      tech: ["Gazebo", " ROS", "MongoDB", "YOLOv8 Nano", "RL"],
+      category: "Robotics",
+      icon: <ShoppingCart className="text-accent-blue" size={24} />,
+      githubUrl: "https://github.com/Goutham-IITJ/E-commerce-platform",
+      liveUrl: "#",
+      imageUrl: '/swarm.png'
     },
     {
       title: "E-commerce Platform",
-      description: "A full-stack e-commerce solution with modern UI/UX, secure payment integration, real-time inventory management, and advanced analytics dashboard.",
-      tech: ["React", "Node.js", "MongoDB", "Stripe", "JWT"],
+      description: "Architected and developed a responsive e-commerce web application using the MERN stack, which supports user authentication, real-time product management, and secure transactions. The platform features a mobile-first user interface built with Tailwind CSS, which improved user engagement by 30% and reduced page load times by 2 seconds."
+      ,tech: ["React", "Node.js", "MongoDB", "Stripe", "JWT"],
       category: "Web Development",
       icon: <ShoppingCart className="text-accent-blue" size={24} />,
       githubUrl: "https://github.com/Goutham-IITJ/E-commerce-platform",
@@ -36,7 +48,7 @@ const PortfolioShowcase = () => {
     },
     {
       title: "SentimentSphere",
-      description: "Advanced sentiment analysis application using NLP techniques to analyze social media trends, customer feedback, and market sentiment with real-time visualization.",
+      description: "Advanced sentiment analysis application using NLP techniques to analyze social media trends, customer feedback, and market sentiment with real-time visualization.This project involved creating a real-time facial emotion detector using a CNN with a 50ms response latency and developing a BiLSTM text classifier with GloVe embeddings. The unified platform improved end-user detection accuracy by 20% compared to single-modality systems. ",
       tech: ["Python", "NLTK", "Django", "D3.js", "PostgreSQL"],
       category: "Data Science",
       icon: <Brain className="text-accent-purple" size={24} />,
@@ -46,7 +58,7 @@ const PortfolioShowcase = () => {
     },
     {
       title: "Network Intrusion Detection System",
-      description: "Robust cybersecurity solution implementing machine learning algorithms to detect and prevent network intrusions with real-time monitoring and alert systems.",
+      description: "Robust cybersecurity solution implementing machine learning algorithms to identify malicious network activities, including DoS attacks and unauthorized access, with over 90% detection accuracy. The project involved feature engineering and preprocessing of the KDD Cup 99 and NSL-KDD datasets and applying various ML models like k-NN, SVM, and XGBoost, which achieved AUC scores above 0.90",
       tech: ["Python", "Scikit-learn", "Wireshark", "Flask", "MySQL"],
       category: "Cybersecurity",
       icon: <Shield className="text-accent-blue" size={24} />,
@@ -73,21 +85,14 @@ const PortfolioShowcase = () => {
       description: "Innovative product solution with comprehensive business strategy and technical implementation",
       date: "2024",
       icon: <Award className="text-accent-blue" size={24} />,
-      imageUrl: null
-    },
-    {
-      title: "RowBoatics Competition",
-      issuer: "National Robotics Championship",
-      achievement: "Finalist",
-      description: "Advanced autonomous boat navigation system with AI-powered obstacle avoidance",
-      date: "2023",
-      icon: <Award className="text-accent-purple" size={24} />,
-      imageUrl: null
+      imageUrl: '/mine3.jpg'
     }
   ];
 
+  const displayedProjects = showAllProjects ? projects : projects.slice(0, 2);
+
   const ProjectCard = ({ project, index }: { project: any; index: number }) => (
-    <Card 
+    <Card
       tabIndex={0}
       className="relative overflow-hidden p-6 transition-transform duration-300 ease-in-out transform group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-purple/40 hover:scale-105"
       style={{ animationDelay: `${index * 0.1}s` }}
@@ -99,8 +104,8 @@ const PortfolioShowcase = () => {
         {/* Project Image or Icon */}
         <div className="relative h-48 bg-gradient-to-br from-accent-purple/10 to-accent-blue/10 rounded-lg overflow-hidden">
           {project.imageUrl ? (
-            <img 
-              src={project.imageUrl} 
+            <img
+              src={project.imageUrl}
               alt={project.title}
               className="w-full h-full object-cover"
             />
@@ -126,7 +131,7 @@ const PortfolioShowcase = () => {
               {project.category}
             </Badge>
           </div>
-          
+
           <p className="text-secondary-text text-sm leading-relaxed">
             {project.description}
           </p>
@@ -159,7 +164,7 @@ const PortfolioShowcase = () => {
   );
 
   const CertificateCard = ({ certificate, index }: { certificate: any; index: number }) => (
-    <Card 
+    <Card
       tabIndex={0}
       className="relative overflow-hidden p-6 transition-transform duration-300 ease-in-out transform group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/40 hover:scale-102"
       style={{ animationDelay: `${index * 0.1}s` }}
@@ -171,8 +176,8 @@ const PortfolioShowcase = () => {
         {/* Certificate Image or Icon */}
         <div className="relative h-32 bg-gradient-to-br from-accent-blue/10 to-accent-purple/10 rounded-lg overflow-hidden">
           {certificate.imageUrl ? (
-            <img 
-              src={certificate.imageUrl} 
+            <img
+              src={certificate.imageUrl}
               alt={certificate.title}
               className="w-full h-full object-cover"
             />
@@ -189,7 +194,7 @@ const PortfolioShowcase = () => {
             </div>
           )}
         </div>
-        
+
         {/* Certificate Info */}
         <div className="space-y-2">
           <h3 className="font-semibold text-white">{certificate.title}</h3>
@@ -216,7 +221,7 @@ const PortfolioShowcase = () => {
               Portfolio <span className="gradient-text">Showcase</span>
             </h2>
             <p className="text-xl text-secondary-text max-w-3xl mx-auto">
-              Explore my journey through projects, certifications, and technical expertise 
+              Explore my journey through projects, certifications, and technical expertise
               that demonstrate my passion for innovation and problem-solving.
             </p>
           </div>
@@ -240,10 +245,33 @@ const PortfolioShowcase = () => {
 
             <TabsContent value="projects" className="space-y-8">
               <div className="grid md:grid-cols-2 gap-8">
-                {projects.map((project, index) => (
+                {displayedProjects.map((project, index) => (
                   <ProjectCard key={index} project={project} index={index} />
                 ))}
               </div>
+
+              {/* Show More / Show Less Button */}
+              {projects.length > 2 && (
+                <div className="text-center mt-8">
+                  <Button
+                    variant="outline"
+                    className="border-accent-purple text-accent-purple hover:bg-accent-purple hover:text-white"
+                    onClick={() => setShowAllProjects(!showAllProjects)}
+                  >
+                    {showAllProjects ? (
+                      <>
+                        <ChevronUp className="mr-2 h-4 w-4" />
+                        Show Less
+                      </>
+                    ) : (
+                      <>
+                        <ChevronDown className="mr-2 h-4 w-4" />
+                        Show More
+                      </>
+                    )}
+                  </Button>
+                </div>
+              )}
             </TabsContent>
 
             <TabsContent value="certificates" className="space-y-6">
@@ -301,7 +329,7 @@ const PortfolioShowcase = () => {
                   </div>
 
                   <div className="mt-6">
-                    <Button 
+                    <Button
                       onClick={() => scrollToSection("skills")}
                       className="bg-accent-solid hover:bg-accent-purple text-white"
                     >
@@ -319,4 +347,3 @@ const PortfolioShowcase = () => {
 };
 
 export default PortfolioShowcase;
-

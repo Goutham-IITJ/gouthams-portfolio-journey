@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/lib/supabase"; // Adjust the import path if needed
 import { 
   Mail, 
   Phone, 
@@ -38,25 +39,24 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     try {
-      // In a real application, you would send this to your backend
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      toast({
-        title: "Message sent successfully!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
-      });
-      
-      // Reset form
-      setFormData({ name: "", email: "", message: "" });
-    } catch (error) {
-      toast({
-        title: "Error sending message",
-        description: "Please try again later or contact me directly via email.",
-        variant: "destructive",
-      });
-    } finally {
+  const { error } = await supabase.from("messages").insert([formData]);
+  if (error) {
+    console.error("Supabase insert error:", error.message);
+    throw error;
+  }
+  toast({ title: "Message sent successfully!", description: "Thank you for reaching out. I'll get back to you soon." });
+  setFormData({ name: "", email: "", message: "" });
+} catch (error: any) {
+  console.error("Catch block:", error.message);
+  toast({
+    title: "Error sending message",
+    description: "Please try again later or contact me directly via email.",
+    variant: "destructive",
+  });
+}
+
+ finally {
       setIsSubmitting(false);
     }
   };

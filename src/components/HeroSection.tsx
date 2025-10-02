@@ -27,7 +27,9 @@ const HeroSection = () => {
             <h2 className="text-lg md:text-xl lg:text-2xl font-medium">
               <span className="gradient-text">Electrical Engineering Student</span>{" "}
               <span className="text-secondary-text">|</span>{" "}
-              <span className="text-white">AI Enthusiast</span>
+              <span className="text-white">Robotics Enthusiast</span>
+              <span className="text-secondary-text">|</span>{" "}
+              <span className="gradient-text">Full-Stack Developer</span>
             </h2>
 
             {/* Concise Description */}
