@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import LoadingAnimation from "@/components/LoadingAnimation";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
@@ -13,18 +12,9 @@ import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [isNavigating, setIsNavigating] = useState(false);
-  const navigate = useNavigate();
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
-  };
-
-  const handleNavigate = (path: string) => {
-    setIsNavigating(true);
-    setTimeout(() => {
-      navigate(path);
-    }, 300); // Duration of the fade-out animation
   };
 
   if (isLoading) {
@@ -32,7 +22,7 @@ const Index = () => {
   }
 
   return (
-    <div className={`min-h-screen bg-gradient-bg font-poppins transition-opacity duration-300 ${isNavigating ? 'page-fade-out' : 'animate-fade-in'}`}>
+    <div className="min-h-screen bg-gradient-bg font-poppins">
       <Navigation />
       <main>
         <HeroSection />
@@ -42,7 +32,7 @@ const Index = () => {
         <SkillsSection />
         <ExperienceSection />
         <ContactSection />
-        <SomethingMoreSection onNavigate={handleNavigate} />
+        <SomethingMoreSection />
       </main>
     </div>
   );
